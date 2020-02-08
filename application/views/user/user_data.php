@@ -78,7 +78,7 @@
 								<label class="control-label">Username</label>
 							</div>
 							<div class="col-md-9">
-								<input type="text" class="form-control" radonly value="<?=$u->username?>" name="username">
+								<input type="text" class="form-control" readonly value="<?=$u->username?>" name="username">
 							</div>
 						</div>
 					</div>

@@ -38,8 +38,8 @@
 									</tr>
 									<tr>
 										<td width="100">Harga</td>
-										<td><b>: Rp.</b></td>
-										<td><b id="price" name="harga"></b></td>
+										<td>:</td>
+										<td><input type="text" class="form-control" id="price" name="harga"></td>
 									</tr>
 									<tr>
 										<td colspan="3"><i>Sudah termasuk PPN</i></td>
@@ -120,7 +120,7 @@
 			success: function(data){
 				var apa = JSON.parse(data)
 				$('#stok').html(apa.stock)
-				$('#price').html(apa.price)
+				$('#price').val(apa.price)
 			}
 		})
 	})

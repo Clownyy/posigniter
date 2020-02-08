@@ -39,7 +39,7 @@
 						<td align="right">Rp. <?=number_format($h->total, 2, ',', '.')?></td>
 						<td><center><span class="label label-success"><?=$h->metode_pembayaran?></span></center></td>
 						<td><?=$h->name?></td>
-						<td><a href="<?=base_url('transaction/invoice/'.$h->kode_unik)?>" class="btn btn-success">Detail Invoice</a></td>
+						<td><a href="<?=base_url('transaction/invoice/'.$h->kode_unik)?>" class="btn btn-success"><i class="fa fa-download"></i> Download Invoice</a></td>
 					</tr>
 					<?php } ?>
 				</tbody>

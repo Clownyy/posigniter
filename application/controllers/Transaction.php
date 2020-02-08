@@ -8,6 +8,7 @@ class Transaction extends CI_Controller {
 		parent::__construct();
 		check_not_login();
 		$this->load->model(['transaction_m','item_m','stock_m']);
+		$this->load->library('pdf');
 	}
 
 	public function index()
@@ -20,7 +21,12 @@ class Transaction extends CI_Controller {
 	public function invoice($kode_unik)
 	{
 		$data['invoice'] = $this->transaction_m->getInvoice($kode_unik);
-		$this->template->load('template', 'transaction/history/invoice',$data);
+		$this->template->load('template','transaction/history/invoice',$data);
+		// json_encode($data);
+		// $this->pdf->loadHtml($html);
+		// $this->pdf->setPaper('A4','landscape');
+		// $this->pdf->render();
+		// $this->pdf->stream('invoice_'.$kode_unik.'.pdf', array("Attachment"=>0));
 	}
 	public function history()
 	{
@@ -74,7 +80,7 @@ class Transaction extends CI_Controller {
 	public function cartStore()
 	{
 		$stok = $this->item_m->get()->row()->stock;
-		$harga = $this->item_m->get()->row()->price;
+		$harga = $this->input->post('harga');
 		$item_id = $this->input->post('item_id');
 		$jumlah = $this->input->post('qty');
 		$status = 1;
