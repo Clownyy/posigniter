@@ -66,7 +66,7 @@ class Transaction extends CI_Controller {
 			$this->transaction_m->updateCarts($finalkodeunik);
 			$this->transaction_m->updateStatus();
 
-			redirect('transaction');
+			redirect('transaction/invoice/'.$finalkodeunik);
 		}
 
 	}

@@ -15,7 +15,7 @@
 			<h3 class="box-title">Riwayat Transaksi</h3>
 		</div>
 		<div class="box-body table-responsive">
-			<table class="table table-bordered">
+			<table class="table table-bordered table-striped" id="tableAll">
 				<thead>
 					<tr>
 						<th>NO</th>
@@ -39,7 +39,7 @@
 						<td align="right">Rp. <?=number_format($h->total, 2, ',', '.')?></td>
 						<td><center><span class="label label-success"><?=$h->metode_pembayaran?></span></center></td>
 						<td><?=$h->name?></td>
-						<td><a href="<?=base_url('transaction/invoice/'.$h->kode_unik)?>" class="btn btn-success"><i class="fa fa-download"></i> Download Invoice</a></td>
+						<td><a href="<?=base_url('transaction/invoice/'.$h->kode_unik)?>" class="btn btn-success"><i class="fa fa-eye"></i> Detail Transaksi</a></td>
 					</tr>
 					<?php } ?>
 				</tbody>

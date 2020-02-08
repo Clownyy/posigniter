@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MyPos | Dashboard</title>
+  <title>Point Of Sales</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -54,7 +54,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>P</b>OS</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Point</b>OfSales</span>
+      <span class="logo-lg"><b>Point</b> Of Sales</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -301,6 +301,8 @@
 <script>
   $(document).ready(function(){
     $('#tableAll').DataTable({
+      "paging": false,
+      "searching" : false,
       dom : 'lBfrtip',
       "lengthMenu" : [[10, 25, 50, -1], [10, 25, 50, "All"]]
     });
