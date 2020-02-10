@@ -16,6 +16,37 @@ class User extends CI_Controller {
 
 		$this->template->load('template', 'user/user_data', $data);
 	}
+	public function myprofile()
+	{
+		$this->template->load('template','user/myprofile');
+	}
+	public function updateProfile()
+	{
+		if ($this->input->post('password') == NULL) {
+			$params = array(
+				'username' => $this->input->post('username'),
+				'name' => $this->input->post('name'),
+				'address' => $this->input->post('address'), 
+			);
+			$this->db->where('user_id', $this->session->userdata('userid'));
+			$this->db->update('user', $params);
+			$this->session->set_userdata($params);
+		}else{
+			$params = array(
+				'username' => $this->input->post('username'),
+				'name' => $this->input->post('name'),
+				'address' => $this->input->post('address'), 
+				'password' => $this->input->post('password')
+			);
+			$this->db->where('user_id', $this->session->userdata('userid'));
+			$this->db->update('user', $params);
+			$this->session->set_userdata($params);
+		}
+		if ($this->db->affected_rows()>0) {
+			$this->session->set_flashdata('success', 'Sukses!');
+		}
+		redirect('user/myprofile');
+	}
 	public function add()
 	{
 		$this->load->library('form_validation');
@@ -83,5 +114,53 @@ class User extends CI_Controller {
 			echo  "<script>alert('Data Berhasil Dihapus!')</script>";
 		}
 		echo "<script>window.location='".base_url('user')."'</script>";
+	}
+	public function informasiToko($id)
+	{
+		$data['info'] = $this->user_m->getInfoToko($id);
+		$this->template->load('template', 'user/info_toko', $data);
+	}
+	public function editInfoToko($id)
+	{
+		$config['upload_path'] = './assets/uploads/info_toko/';
+		$config['allowed_types'] = 'jpg|jpeg|png';
+		$config['max_size'] = 2048;
+		$config['file_name'] = 'info-'.date('ymd').'-'.substr(rand(),0,10);
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('foto')) {
+			$data = array(
+				'nama_toko' => $this->input->post('nama_toko'),
+				'notelp' => $this->input->post('notelp'),
+				'kode_pos' => $this->input->post('kode_pos'),
+				'deskripsi' => $this->input->post('deskripsi'),
+				'alamat' => $this->input->post('alamat'),
+				'foto' => $this->upload->data('file_name'), 
+			);
+			$where = array(
+				'id' => $id,
+			);
+			$this->user_m->edit_data($where,$data,'info');
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('success', 'Berhasil mengubah data Informasi Toko');
+			}
+			redirect('user/informasiToko/1');
+		}else if(!$this->upload->do_upload('foto')){
+			$data = array(
+				'nama_toko' => $this->input->post('nama_toko'),
+				'notelp' => $this->input->post('notelp'),
+				'kode_pos' => $this->input->post('kode_pos'),
+				'deskripsi' => $this->input->post('deskripsi'),
+				'alamat' => $this->input->post('alamat'),
+			);
+			$where = array(
+				'id' => $id,
+			);
+			$this->user_m->edit_data($where,$data,'info');
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('success', 'Berhasil mengubah data Informasi Toko');
+			}
+			redirect('user/informasiToko/1');
+		}
 	}
 }

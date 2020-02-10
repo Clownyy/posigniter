@@ -19,7 +19,7 @@
 				<thead>
 					<tr>
 						<th>NO</th>
-						<th>Barcode Transaksi</th>
+						<th>Kode Transaksi</th>
 						<th width="120">Total Harga</th>
 						<th width="150">Metode Pembayaran</th>
 						<th>Nama Kasir</th>
@@ -30,12 +30,7 @@
 					<?php $no = 1; foreach ($history->result() as $h) {?>
 					<tr>
 						<td><?=$no++?></td>
-						<td>
-							<?php 
-							$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-							echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($h->kode_unik, $generator::TYPE_CODE_128)).'">';
-							?>
-						</td>	
+						<td><?=$h->kode_unik?></td>	
 						<td align="right">Rp. <?=number_format($h->total, 2, ',', '.')?></td>
 						<td><center><span class="label label-success"><?=$h->metode_pembayaran?></span></center></td>
 						<td><?=$h->name?></td>

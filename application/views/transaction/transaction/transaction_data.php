@@ -72,7 +72,7 @@
 						<thead>
 							<tr>
 								<th>NO.</th>
-								<th>Barcode</th>
+								<th>Kode Produk</th>
 								<th>Nama Produk</th>
 								<th>Jumlah</th>
 								<th colspan="2">Total Harga</th>
@@ -81,17 +81,14 @@
 						<tbody>
 							<?php $no=1; foreach($carts->result() as $c){ ?>
 							<tr>
+								<input type="hidden" name="qty" value="<?=$c->jumlah?>">
+								<input type="hidden" name="item_id" value="<?=$c->item_id?>">
 								<td><?=$no++?></td>
-								<td>
-							<?php 
-							$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-							echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($c->barcode, $generator::TYPE_CODE_128)).'">';
-							?><br>
-							<?=$c->barcode?></td>
+								<td><?=$c->barcode?></td>
 								<td><?=$c->item_name?></td>
 								<td><?=$c->jumlah?></td>
 								<td>Rp. <?=number_format($c->sub_total, 2, ',', '.')?></td>
-								<td><center><a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a></center></td>
+								<td><center><a href="<?=base_url('transaction/deleteCarts/'.$c->id)?>" data-toggle="tooltip" data-placement="bottom" title="On Development" class="btn btn-danger" disabled><i class="fa fa-trash"></i></a></center></td>
 							</tr>
 							<?php } ?>
 						</tbody>

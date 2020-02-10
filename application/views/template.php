@@ -98,6 +98,9 @@
                 </p>
               </li>
               <li class="user-footer">
+                <div class="pull-left">
+                  <a href="<?=base_url('user/myprofile')?>" class="btn btn-default btn-flat">Profile</a>
+                </div>
                 <div class="pull-right">
                   <a href="<?=base_url('auth/logout')?>" class="btn btn-default btn-flat">Sign Out</a>
                 </div>
@@ -210,16 +213,22 @@
           <ul class="treeview-menu">
             <li><a href="<?=base_url('stock/in')?>"><i class="fa fa-circle-o"></i> Stock In</a></li>
             <li><a href="<?=base_url('stock/out')?>"><i class="fa fa-circle-o"></i> Stock Out</a></li>
+            <li><a href="<?=base_url('stock/empty')?>"><i class="fa fa-circle-o"></i> Empty Stock</a></li>
           </ul>
         </li>
-        <?php if($this->session->userdata('level') == 1) { ?>
         <li class="header">SETTINGS</li>
+        <?php if($this->session->userdata('level') == 1) { ?>
         <li>
         	<a href="<?=base_url('user')?>">
         		<i class="fa fa-user"></i> <span>Users</span>
         	</a>
         </li>
         <?php } ?>
+        <li>
+          <a href="<?=base_url('user/informasiToko/1')?>">
+            <i class="fa fa-home"></i> <span>Informasi Toko</span>
+          </a>
+        </li>
       </ul>
   </aside>
   <div class="content-wrapper">
@@ -261,6 +270,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
 
 <script src="<?=base_url('assets')?>/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -307,6 +317,20 @@
       "lengthMenu" : [[10, 25, 50, -1], [10, 25, 50, "All"]]
     });
   });
+</script>
+<script>
+  function readURL1(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+ 
+    reader.onload = function (e) {
+      $('#blah1')
+      .attr('src', e.target.result);
+    };
+ 
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 </script>
 <script type="text/javascript">
 $("ul a").click(function(e) {

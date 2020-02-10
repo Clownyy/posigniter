@@ -38,7 +38,8 @@ class Item_m extends CI_Model {
             'name' => $post['product_name'],
             'category_id' => $post['category'],
             'unit_id' => $post['unit'],
-            'price' => $post['price'],
+            'buy_price' => $post['buy_price'],
+            'price' => $post['buy_price'] + $post['buy_price'] * 10/100,
             'image' => $post['image'],
     	];
     	$this->db->insert('p_item', $params);

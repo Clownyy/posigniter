@@ -49,6 +49,12 @@ class User_m extends CI_Model{
 		$this->db->where('user_id', $id);
 		$this->db->delete('user');
 	}
+    public function getInfoToko($id)
+    {
+        $this->db->from('info');
+        $this->db->where('id', $id);
+        return $this->db->get()->row();
+    }
 }
 
 ?>

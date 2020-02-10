@@ -18,6 +18,12 @@ class Stock_m extends CI_Model {
     	$query = $this->db->get();
     	return $query;
     }
+    public function getEmptyStock()
+    {
+        $this->db->select('*');
+        $this->db->where('stock', 0);
+        return $this->db->get('p_item')->result();
+    }
     public function get_out($id = null)
     {
         $this->db->select('t_stock.*,p_item.name as item_name, user.name as user_name, p_item.barcode as barcode_item');

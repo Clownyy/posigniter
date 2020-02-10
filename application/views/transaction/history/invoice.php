@@ -25,7 +25,7 @@ $query = $this->db->get();
 						<thead>
 							<tr>
 								<th width="10">No</th>
-								<th>Barcode Produk</th>
+								<th>Kode Produk</th>
 								<th>Nama Produk</th>
 								<th>Harga</th>
 								<th>Jumlah</th>
@@ -38,13 +38,7 @@ $query = $this->db->get();
 							<?php $no=1; foreach ($query->result() as $query) {?>
 								<tr>
 									<td><?= $no++ ?></td>
-									<td>
-										<?php 
-										$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-										echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($query->barcode_item, $generator::TYPE_CODE_128)).'">';
-										?><br>
-										<?=$query->barcode_item?>
-									</td>
+									<td><?=$query->barcode_item?></td>
 									<td><?=$query->item_name?></td>
 									<td>Rp. <?=number_format($query->harga_satuan, 2, ',', '.')?></td>
 									<td><?=$invoice->jumlah_item?></td>

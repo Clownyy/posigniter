@@ -31,6 +31,11 @@ class Stock extends CI_Controller {
 		$data['stock'] = $this->stock_m->get_out();
 		$this->template->load('template', 'transaction/stock_out/stock_out_data', $data);
 	}
+	public function empty()
+	{
+		$data['productEmpty'] = $this->stock_m->getEmptyStock();
+		$this->template->load('template','transaction/emptystock',$data);
+	}
 	public function stock_out_add()
 	{
 		$itemAll = $this->item_m->get();

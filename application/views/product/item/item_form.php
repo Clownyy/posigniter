@@ -46,7 +46,7 @@
 						</div>
 						<div class="form-group">
 							<label>Price *</label>
-							<input type="number" class="form-control" value="<?=$row->price?>" name="price" required>
+							<input type="number" class="form-control" value="<?=$row->buy_price?>" name="buy_price" required>
 						</div>
 						<div class="form-group">
 							<label>Image</label>

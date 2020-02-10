@@ -20,6 +20,7 @@ class Item extends CI_Controller {
 		$item->item_id = null;
 		$item->barcode = null;
 		$item->name = null;
+		$item->buy_price = null;
 		$item->price = null;
 		$item->category_id = null;
 		$item->unit_id = null;

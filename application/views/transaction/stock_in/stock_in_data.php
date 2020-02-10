@@ -22,7 +22,7 @@
 				<thead>
 					<th>#</th>
 					<th>Date</th>
-					<th>Barcode</th>
+					<th>Kode Produk</th>
 					<th>Name</th>
 					<th>Supplier</th>
 					<th>Quantity</th>
@@ -35,10 +35,6 @@
 						<td><?=$no++?></td>
 						<td><?=$s->date?></td>
 						<td>
-							<?php 
-							$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-							echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($s->barcode_item, $generator::TYPE_CODE_128)).'">';
-							?><br>
 							<?=$s->barcode_item?>
 						</td>
 						<td><?=$s->item_name?></td>

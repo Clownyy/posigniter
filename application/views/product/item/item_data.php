@@ -20,11 +20,12 @@
 			<table class="table table-bordered table-striped" id="tableAll">
 				<thead>
 					<th>#</th>
-					<th>Barcode</th>
+					<th>Product Code</th>
 					<th>QRCode</th>
 					<th>Name</th>
 					<th>Category</th>
 					<th>Unit</th>
+					<th>Buy Price</th>
 					<th>Price</th>
 					<th>Stock</th>
 					<th>Image</th>
@@ -39,10 +40,6 @@
 					<tr>
 						<td><?=$no++?></td>
 						<td>
-							<?php 
-							$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-							echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($s->barcode, $generator::TYPE_CODE_128)).'">';
-							?><br>
 							<?=$s->barcode?>
 						</td>
 						<td>
@@ -51,6 +48,7 @@
 						<td><?=$s->name?></td>
 						<td><?=$s->category_name?></td>
 						<td><?=$s->unit_name?></td>
+						<td align="right">Rp <?=number_format($s->buy_price, 2, ',', '.')?></td>
 						<td align="right">Rp <?=number_format($s->price, 2, ',', '.')?></td>
 						<td><?=$s->stock?></td>
 						<td><?php if($s->image != null){ ?><img style="width:50px;" src="<?=base_url('assets/uploads/product/').$s->image?>"><?php } ?></td>

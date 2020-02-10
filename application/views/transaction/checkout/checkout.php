@@ -34,7 +34,7 @@
 								<thead>
 									<tr>
 										<th>No</th>
-										<th>Barcode</th>
+										<th>Kode Produk</th>
 										<th>Nama Produk</th>
 										<th>Harga</th>
 										<th>Jumlah</th>
@@ -45,12 +45,7 @@
 									<?php $no=1; foreach($carts->result() as $c){ ?>
 									<tr>
 										<td><?=$no++?></td>
-										<td>
-									<?php 
-									$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-									echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($c->barcode, $generator::TYPE_CODE_128)).'">';
-									?><br>
-									<?=$c->barcode?></td>
+										<td><?=$c->barcode?></td>
 										<td><?=$c->item_name?></td>
 										<td>Rp. <?=number_format($c->price, 2, ',', '.')?></td>
 										<td><?=$c->jumlah?></td>
