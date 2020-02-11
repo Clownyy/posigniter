@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2020 at 05:05 AM
+-- Generation Time: Feb 11, 2020 at 09:50 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -47,7 +47,9 @@ INSERT INTO `carts` (`id`, `item_id`, `jumlah`, `sub_total`, `status`, `kode_uni
 (11, 11, 1, 22000, 0, '847540135848', 1),
 (13, 12, 1, 11000, 0, '847540135848', 1),
 (14, 12, 1, 11000, 0, '774515382225', 1),
-(15, 12, 2, 22000, 0, '359579179826', 1);
+(15, 12, 2, 22000, 0, '359579179826', 1),
+(17, 14, 1, 2200, 0, '971086159817', 2),
+(18, 14, 99, 217800, 0, '374511482858', 2);
 
 -- --------------------------------------------------------
 
@@ -73,7 +75,9 @@ CREATE TABLE `checkout` (
 INSERT INTO `checkout` (`id`, `total`, `user_id`, `bayar`, `kembalian`, `metode_pembayaran`, `kode_unik`, `tanggal`) VALUES
 (4, 33000, 1, 40000, 7000, 'CASH', '847540135848', '2020-02-09'),
 (5, 11000, 1, 15000, 4000, 'CASH', '774515382225', '2020-02-11'),
-(6, 22000, 1, 30000, 8000, 'CASH', '359579179826', '2020-02-11');
+(6, 22000, 1, 30000, 8000, 'CASH', '359579179826', '2020-02-11'),
+(7, 2200, 2, 3000, 800, 'CASH', '971086159817', '2020-02-11'),
+(8, 217800, 2, 250000, 32200, 'CASH', '374511482858', '2020-02-11');
 
 -- --------------------------------------------------------
 
@@ -140,7 +144,8 @@ CREATE TABLE `p_category` (
 
 INSERT INTO `p_category` (`category_id`, `name`, `created`, `updated`) VALUES
 (3, 'Makanan', '2019-10-21 21:52:14', NULL),
-(4, 'Minuman', '2019-10-21 21:52:18', NULL);
+(4, 'Minuman', '2019-10-21 21:52:18', NULL),
+(5, 'Elektronik', '2020-02-11 15:23:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -154,8 +159,8 @@ CREATE TABLE `p_item` (
   `name` varchar(100) DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
-  `buy_price` int(11) NOT NULL,
-  `price` int(11) DEFAULT NULL,
+  `buy_price` bigint(20) NOT NULL,
+  `price` bigint(20) DEFAULT NULL,
   `stock` int(10) NOT NULL DEFAULT 0,
   `image` varchar(100) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
@@ -168,7 +173,9 @@ CREATE TABLE `p_item` (
 
 INSERT INTO `p_item` (`item_id`, `barcode`, `name`, `category_id`, `unit_id`, `buy_price`, `price`, `stock`, `image`, `created`, `updated`) VALUES
 (11, '5463546', 'Susu Dancow', 4, 4, 20000, 22000, 99, 'item-200210-462798241.jpeg', '2020-02-09 20:52:44', NULL),
-(12, '4876546', 'Chiki Jetz', 3, 4, 10000, 11000, 96, 'item-200210-1990224921.jpeg', '2020-02-09 22:54:14', NULL);
+(12, '4876546', 'Chiki Jetz', 3, 4, 10000, 11000, 96, 'item-200210-1990224921.jpeg', '2020-02-09 22:54:14', NULL),
+(14, '12321', 'Tahu Goreng', 3, 2, 2000, 2200, 0, 'item-200211-1019697834.png', '2020-02-11 15:27:07', '2020-02-11 09:30:37'),
+(15, '32423', 'Kulkas', 5, 5, 1500000, 1650000, 0, 'item-200211-1307556117.png', '2020-02-11 15:50:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -190,7 +197,8 @@ CREATE TABLE `p_unit` (
 INSERT INTO `p_unit` (`unit_id`, `name`, `created`, `updated`) VALUES
 (1, 'Kilogram', '2019-10-14 11:02:42', '2019-10-14 06:31:55'),
 (2, 'Buah', '2019-10-14 11:32:11', NULL),
-(4, 'Packs', '2019-10-21 21:52:26', NULL);
+(4, 'Packs', '2019-10-21 21:52:26', NULL),
+(5, 'Pcs', '2020-02-11 15:23:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -241,7 +249,8 @@ CREATE TABLE `t_stock` (
 
 INSERT INTO `t_stock` (`stock_id`, `item_id`, `type`, `detail`, `supplier_id`, `qty`, `date`, `created`, `user_id`) VALUES
 (68, 11, 'in', 'Masuk', 2, 100, '2020-02-10', '2020-02-09 22:09:31', 1),
-(69, 12, 'in', 'Masuk', 2, 100, '2020-02-10', '2020-02-09 22:54:41', 1);
+(69, 12, 'in', 'Masuk', 2, 100, '2020-02-10', '2020-02-09 22:54:41', 1),
+(71, 14, 'in', 'Masuk', 2, 100, '2020-02-11', '2020-02-11 15:30:55', 1);
 
 -- --------------------------------------------------------
 
@@ -264,7 +273,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `address`, `level`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Muhammad Bafaqih', 'Kebon Baru', 1),
-(2, 'kasir1', '8691e4fc53b99da544ce86e22acba62d13352eff', 'Muhammad Fahrul', 'Surabaya', 2);
+(2, 'kasir1', '8691e4fc53b99da544ce86e22acba62d13352eff', 'Muhammad Fahrul', 'Surabaya', 2),
+(5, 'siti123', 'ddd6717e1646c4b9ee46fc9568626a57c4b8a187', 'Siti Annisah', 'Condet', 2);
 
 --
 -- Indexes for dumped tables
@@ -344,13 +354,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -368,19 +378,19 @@ ALTER TABLE `info`
 -- AUTO_INCREMENT for table `p_category`
 --
 ALTER TABLE `p_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `p_item`
 --
 ALTER TABLE `p_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `p_unit`
 --
 ALTER TABLE `p_unit`
-  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `supplier`
@@ -392,13 +402,13 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT for table `t_stock`
 --
 ALTER TABLE `t_stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
