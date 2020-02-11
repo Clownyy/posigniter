@@ -21,7 +21,7 @@ function check_admin()
     $ci =& get_instance();
     $user_session = $ci->session->userdata('level');
     if ($user_session != 1) {
-        redirect('dashboard');
+        redirect('transaction');
     }
 }
 ?>

@@ -15,6 +15,13 @@ class Transaction_m extends CI_Model {
 	{
 		$this->db->insert($table,$data);
 	}
+	public function profit()
+	{
+		$this->db->select_sum('total');
+		$this->db->from('checkout');
+		$query = $this->db->get()->row()->total;
+		return $query;
+	}
 	public function getInvoice($kode_unik)
 	{
 		$this->db->select('checkout.*, carts.item_id as item_id, carts.jumlah as jumlah_item, user.name as cashier');

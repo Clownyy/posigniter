@@ -84,7 +84,13 @@
 								<input type="hidden" name="qty" value="<?=$c->jumlah?>">
 								<input type="hidden" name="item_id" value="<?=$c->item_id?>">
 								<td><?=$no++?></td>
-								<td><?=$c->barcode?></td>
+								<td>
+									<?php 
+									$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+									echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($c->barcode, $generator::TYPE_CODE_128)).'">';
+									?><br>
+									<?=$c->barcode?>
+								</td>
 								<td><?=$c->item_name?></td>
 								<td><?=$c->jumlah?></td>
 								<td>Rp. <?=number_format($c->sub_total, 2, ',', '.')?></td>
