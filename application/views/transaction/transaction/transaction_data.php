@@ -124,10 +124,10 @@
 			url : "<?=base_url('stock/getdataitem/"+selected+"')?>",
 			type: "GET",
 			success: function(data){
-				var apa = JSON.parse(data)
-				$('#stok').html(apa.stock)
-				$('#prices').html(apa.price)
-				$('#price').val(apa.price)
+				var dataProduct = JSON.parse(data)
+				$('#stok').html(dataProduct.stock)
+				$('#prices').html(dataProduct.price)
+				$('#price').val(dataProduct.price)
 			}
 		})
 	})
