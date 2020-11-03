@@ -28,7 +28,7 @@
     <div class="col-md-3">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3>Rp. <?=$profit?></h3>
+          <h3>Rp. <?=number_format($profit, 2, ',', '.')?></h3>
           <p>Total Sales</p>
         </div>
         <div class="icon">
