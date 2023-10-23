@@ -60,7 +60,8 @@ class Item_m extends CI_Model {
             'name' => $post['product_name'],
             'category_id' => $post['category'],
             'unit_id' => $post['unit'],
-            'price' => $post['price'],
+            'buy_price' => $post['buy_price'],
+            'price' => $post['buy_price'] + $post['buy_price'] *10/100,
     		'updated' => date('Y-m-d H:i:s')
     	];
         if ($post['image'] != null) {

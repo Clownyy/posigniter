@@ -7,6 +7,7 @@ class Customer extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		check_admin();
 		$this->load->model('customer_m');
 	}
 	public function index()
