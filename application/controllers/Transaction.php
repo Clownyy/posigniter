@@ -21,12 +21,12 @@ class Transaction extends CI_Controller {
 	public function invoice($kode_unik)
 	{
 		$data['invoice'] = $this->transaction_m->getInvoice($kode_unik);
-		$this->template->load('template','transaction/history/invoice',$data);
+		$html = $this->template->load('template','transaction/history/invoice',$data);
 		// json_encode($data);
 		// $this->pdf->loadHtml($html);
-		// $this->pdf->setPaper('A4','landscape');
+		// $this->pdf->setPaper('A4','potrait');
 		// $this->pdf->render();
-		// $this->pdf->stream('invoice_'.$kode_unik.'.pdf', array("Attachment"=>0));
+		// $this->pdf->stream('invoice_'.$kode_unik.'.pdf', array('Attachment'=>0));
 	}
 	public function history()
 	{

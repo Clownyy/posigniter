@@ -7,6 +7,7 @@ class Unit extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		check_admin();
 		$this->load->model('unit_m');
 	}
 	public function index()

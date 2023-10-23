@@ -7,6 +7,7 @@ class Item extends CI_Controller {
 	{
 		parent::__construct();
 		check_not_login();
+		check_admin();
 		$this->load->model(['item_m','category_m','unit_m']);
 	}
 	public function index()

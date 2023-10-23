@@ -142,6 +142,7 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
+        <?php if($this->session->userdata('level') == 1) { ?>
         <li class="header">MAIN NAVIGATION</li>
         <li>
           <a href="<?=base_url('dashboard')?>">
@@ -153,11 +154,11 @@
         		<i class="fa fa-truck"></i> <span>Suppliers</span>
         	</a>
         </li>
-        <li>
+        <!-- <li>
         	<a href="<?=base_url('customer')?>">
         		<i class="fa fa-group"></i> <span>Customers</span>
         	</a>
-        </li>
+        </li> -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-archive"></i> <span>Products</span>
@@ -171,6 +172,32 @@
             <li><a href="<?=base_url('item')?>"><i class="fa fa-circle-o"></i> Items</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-houzz"></i> <span>Inventory</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?=base_url('stock/in')?>"><i class="fa fa-circle-o"></i> Stock In</a></li>
+            <li><a href="<?=base_url('stock/out')?>"><i class="fa fa-circle-o"></i> Stock Out</a></li>
+            <li><a href="<?=base_url('stock/empty')?>"><i class="fa fa-circle-o"></i> Empty Stock</a></li>
+          </ul>
+        </li>
+        <li class="header">SETTINGS</li>
+        <li>
+        	<a href="<?=base_url('user')?>">
+        		<i class="fa fa-user"></i> <span>Users</span>
+        	</a>
+        </li>
+        <li>
+          <a href="<?=base_url('user/informasiToko/1')?>">
+            <i class="fa fa-home"></i> <span>Informasi Toko</span>
+          </a>
+        </li>
+        <?php } ?>
+        <li class="header">TRANSACTION</li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-shopping-cart"></i> <span>Transaction</span>&emsp;
@@ -203,32 +230,6 @@
             <li><a href="<?=base_url('transaction/history')?>"><i class="fa fa-circle-o"></i> History Transaction</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-houzz"></i> <span>Inventory</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?=base_url('stock/in')?>"><i class="fa fa-circle-o"></i> Stock In</a></li>
-            <li><a href="<?=base_url('stock/out')?>"><i class="fa fa-circle-o"></i> Stock Out</a></li>
-            <li><a href="<?=base_url('stock/empty')?>"><i class="fa fa-circle-o"></i> Empty Stock</a></li>
-          </ul>
-        </li>
-        <li class="header">SETTINGS</li>
-        <?php if($this->session->userdata('level') == 1) { ?>
-        <li>
-        	<a href="<?=base_url('user')?>">
-        		<i class="fa fa-user"></i> <span>Users</span>
-        	</a>
-        </li>
-        <?php } ?>
-        <li>
-          <a href="<?=base_url('user/informasiToko/1')?>">
-            <i class="fa fa-home"></i> <span>Informasi Toko</span>
-          </a>
-        </li>
       </ul>
   </aside>
   <div class="content-wrapper">
@@ -238,7 +239,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> BETA
     </div>
-    <strong>Copyright &copy; <?=date('Y')?> <a href="https://www.facebook.com/bafaqih23" target="_blank">Muhammad Bafaqih</a>.</strong>
+    <strong>Copyright &copy; <?=date('Y')?> <a>SMKN 10 Jakarta</a>.</strong>
   </footer>
 <!-- jQuery 3 -->
 <script src="<?=base_url('assets')?>/bower_components/jquery/dist/jquery.min.js"></script>
@@ -270,7 +271,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
 
 <script src="<?=base_url('assets')?>/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- daterangepicker -->

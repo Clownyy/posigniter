@@ -5,23 +5,19 @@ $this->db->join('p_item', 'p_item.item_id = carts.item_id');
 $this->db->where('kode_unik', $invoice->kode_unik);
 $query = $this->db->get();
  ?>
+ <?php $info = $this->db->get('info')->row(); ?>
 <section class="content">
 	<div class="box">
 		<div class="box-body">
-			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-5 text-left">
-					<h5 style="font-size: 20px"><b>Kasir :</b> <?=$invoice->cashier?></h5>
-				</div>
-				<div class="col-md-5 text-right">
-					<h5 style="font-size: 20px"><b>Tanggal :</b> <?=$invoice->tanggal?></h5>
-				</div>
-				<div class="col-md-1"></div>
-			</div>
+			<center>
+				<img src="<?=base_url('assets/uploads/info_toko/'.$info->foto)?>" style="width: 100px;">
+				<h3><?=$info->nama_toko?></h3>
+				<h5><?=$info->alamat?>, <?=$info->kode_pos?>, <?=$info->notelp?></h5>
+			</center>
 			<br><br>
 			<div class="row">
 				<div class="col-md-12">
-					<table class="table table-striped text-center" id="tableMantap" style="width:100%">
+					<table class="table table-striped text-center table-bordered" style="width:100%">
 						<thead>
 							<tr>
 								<th width="10">No</th>
@@ -38,7 +34,13 @@ $query = $this->db->get();
 							<?php $no=1; foreach ($query->result() as $query) {?>
 								<tr>
 									<td><?= $no++ ?></td>
-									<td><?=$query->barcode_item?></td>
+									<td>
+										<?php 
+										$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+										echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($query->barcode_item, $generator::TYPE_CODE_128)).'">';
+										?><br>
+										<?=$query->barcode_item?>
+									</td>
 									<td><?=$query->item_name?></td>
 									<td>Rp. <?=number_format($query->harga_satuan, 2, ',', '.')?></td>
 									<td><?=$invoice->jumlah_item?></td>
@@ -67,5 +69,6 @@ $query = $this->db->get();
 				</div>
 			</div>
 		</div>
+		<div class="box-footer"><button class="btn btn-primary btn-sm" onclick="window.print()"><i class="fa fa-download"></i> Download Invoice</button></div>
 	</div>
 </section>
