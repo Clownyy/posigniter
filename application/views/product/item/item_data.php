@@ -40,6 +40,10 @@
 					<tr>
 						<td><?=$no++?></td>
 						<td>
+							<?php 
+							$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+							echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($s->barcode, $generator::TYPE_CODE_128)).'">';
+							?><br>
 							<?=$s->barcode?>
 						</td>
 						<td>

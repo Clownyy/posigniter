@@ -34,11 +34,11 @@
 						<td><?=$no++?></td>
 						<td><?=$s->date?></td>
 						<td>
-							<!-- <?php 
+							<?php 
 							$generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
 							echo '<img src="data:image/png;base64,'.base64_encode($generator->getBarcode($s->barcode_item, $generator::TYPE_CODE_128)).'">';
 							?><br>
- -->							<?=$s->barcode_item?>
+							<?=$s->barcode_item?>
 						</td>
 						<td><?=$s->item_name?></td>
 						<td align="right"><?=$s->qty?></td>

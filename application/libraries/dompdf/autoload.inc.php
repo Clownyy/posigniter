@@ -9,6 +9,7 @@
 
 // HMLT5 Parser
 require_once __DIR__ . '/lib/html5lib/Parser.php';
+define("DOMPDF_AUTOLOAD_PREPEND", true);
 
 // Sabberworm
 spl_autoload_register(function($class)

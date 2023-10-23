@@ -28,13 +28,13 @@
     <div class="col-md-3">
       <div class="small-box bg-green">
         <div class="inner">
-          <h3><?=$jumlahcustomer?></h3>
-          <p>Customers</p>
+          <h3>Rp. <?=number_format($profit, 2, ',', '.')?></h3>
+          <p>Total Sales</p>
         </div>
         <div class="icon">
-          <i class="fa fa-users"></i>
+          <i class="fa fa-money"></i>
         </div>
-        <a href="<?=base_url('customer')?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?=base_url('transaction/history')?>" class="small-box-footer">More Info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-md-3">
